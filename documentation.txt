@@ -1,0 +1,62 @@
+libraries used: numpy, pygame(https://www.pygame.org/docs/), sys and math, random
+
+create_board()
+    - generates board with n rows and m columns. returns array with n rows and m columns filled zeros.
+
+drop_piece(board, row, col, piece)
+    - drops piece of a player,if player 1 then the piece is 1, if player 2 the piece is 2.
+
+is_valid_location(board, col)
+    - checks is the column valid (not filled), if valid then return True, if not valid then return False.
+
+get_valid_row(board, col)
+    - takes the top row of the chosen column to drop a piece.
+
+print_board(board)
+    - in real life we drop the piece to the bottom,
+    so we flip the board to make it clear and close to the game in real life.
+
+wining_move(board, piece)
+    - checks pieces to finish the game and show which player has won. The function check all 4 positions:
+    horizontal win, vertical win, positive diagonal win, and negative diagonal win.
+
+draw_board(board)
+    - generates the game screen with for visualisation the array, pygame library used
+
+the main game action player vs player is happening in while loop. It will while game_over is Flase, to turn it true one
+player should reach 4 connect. Using great functions, which mentioned above, the program can stop when someone wins.
+The board can be infinite size, but for now it is 16x16.
+
+
+FUNCTIONS USED FOR AI:
+
+Actually here is 3 AIs which can be used:
+    1. Really simple and stupid - random, when Bot does random decisions, therefore it can be win easily
+    2. Is using best score and some functions which i will use below:
+
+evaluate(window, piece):
+    this function evaluates the position and gives the score, depends the which position has chosen by AI
+    this fun actually created because there was used a lot of same code... To avoid copy past, thi fun was created
+
+score_position(board, piece)
+    this fun checks 4 winning moves, horizontal, vertical, pos diagonal  and neg diagonal and uses evaluate function
+    to give score.
+
+pick_best_move(board, piece)
+    this fund uses score_position func and picks "correct" by AI's decision move. We give -score, to show 'motivate' AI
+    pick correct moves, to win
+
+    and 3rd minimax algorithm with alpha beta pruning:
+
+minimax(board, depth, maximizing_player, alpha, beta):
+    the maximum depth 5 with size 10*10, if bigger then works really slow, depends on hardware
+    this funcs implements minimax algorithm, the pseudocode was found on wikipedia, ref below.
+
+
+refs:
+
+https://en.wikipedia.org/wiki/Minimax
+
+https://www.educative.io/edpresso/the-minimax-algorithm
+
+https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
